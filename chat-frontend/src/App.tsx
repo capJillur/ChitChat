@@ -1,7 +1,7 @@
 // App.tsx
 
 import { useEffect, useState } from "react";
-import ChatPage from "./page/ChatPage";
+import ChatPage from "./page/ChatPage.tsx";
 import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 

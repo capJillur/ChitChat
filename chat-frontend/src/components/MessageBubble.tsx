@@ -20,8 +20,8 @@ const MessageBubble = ({ message, isOwn = false }: Props) => {
             : "bg-gray-200 text-gray-900"
         }`}
       >
-        <p className="text-xs font-semibold mb-1">
-          {message.username}
+        <p className={`text-xs font-semibold mb-1 ${isOwn ? 'text-white' : 'text-slate-700'}`}>
+          {isOwn ? 'You' : message.username}
         </p>
 
         <p>{message.message}</p>

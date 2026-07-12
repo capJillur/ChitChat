@@ -6,9 +6,10 @@ import type { Message } from "../types/message";
 interface Props {
   messages: Message[];
   currentUsername: string;
+  typingUser: string;
 }
 
-const ChatBox = ({ messages, currentUsername }: Props) => {
+const ChatBox = ({ messages, currentUsername, typingUser }: Props) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   
 
@@ -29,17 +30,26 @@ const ChatBox = ({ messages, currentUsername }: Props) => {
 }
 
   return (
-    <div className="h-[500px] overflow-y-auto p-5 space-y-4 bg-slate-50">
-      {messages.map((msg) => (
-        <MessageBubble
-          key={msg._id}
-          message={msg}
-          isOwn={msg.username === currentUsername}
-        />
-      ))}
+    <div className="relative flex h-full flex-col overflow-hidden bg-slate-50">
+      <div className="flex-1 overflow-y-auto p-5 space-y-4 relative">
+        {messages.map((msg) => (
+          <MessageBubble
+            key={msg._id}
+            message={msg}
+            isOwn={msg.username === currentUsername}
+          />
+        ))}
 
-      {/* Invisible element to scroll into view */}
-      <div ref={bottomRef} />
+        <div ref={bottomRef} />
+
+        {typingUser && typingUser !== currentUsername ? (
+          <div className="mt-2 flex justify-end">
+            <span className="text-sm text-slate-600">
+              {`${typingUser} is typing...`}
+            </span>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

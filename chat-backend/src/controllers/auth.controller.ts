@@ -60,3 +60,12 @@ export const getUserCount = async (_req: Request, res: Response) => {
     return errorResponse(res, 500, "Could not retrieve user count.");
   }
 };
+
+export const getUsers = async (_req: Request, res: Response) => {
+  try {
+    const users = await User.find({}, { username: 1 }).sort({ username: 1 });
+    return successResponse(res, 200, "Users retrieved.", { users });
+  } catch (error) {
+    return errorResponse(res, 500, "Could not retrieve users.");
+  }
+};

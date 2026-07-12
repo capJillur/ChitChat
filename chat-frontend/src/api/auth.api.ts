@@ -28,3 +28,8 @@ export const getUserCount = async () => {
   const response = await api.get("/auth/users/count");
   return response.data;
 };
+
+export const getUsers = async () => {
+  const response = await api.get("/auth/users");
+  return response.data;
+};

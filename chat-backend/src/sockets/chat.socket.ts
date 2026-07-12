@@ -20,6 +20,10 @@ export const registerChatSocket = (io: Server) => {
       });
     });
 
+    socket.on("stop-typing", () => {
+      socket.broadcast.emit("stop-typing");
+    });
+
     socket.on("disconnect", () => {
          console.log(`🔴 User Disconnected: ${socket.id}`);
       onlineUsers = Math.max(onlineUsers - 1, 0);

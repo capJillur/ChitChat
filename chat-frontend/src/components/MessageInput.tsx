@@ -13,6 +13,7 @@ const MessageInput = ({
 }: Props) => {
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -23,6 +24,21 @@ const MessageInput = ({
     await onSend(message.trim());
     setMessage("");
     inputRef.current?.focus();
+  };
+
+  const handleTyping = () => {
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    onTyping();
+
+    typingTimeoutRef.current = setTimeout(() => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+        typingTimeoutRef.current = null;
+      }
+    }, 1000);
   };
 
   return (
@@ -36,7 +52,7 @@ const MessageInput = ({
           disabled={sending}
           onChange={(e) => {
             setMessage(e.target.value);
-            onTyping();
+            handleTyping();
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -44,7 +60,7 @@ const MessageInput = ({
               handleSend();
             }
           }}
-          className="flex-1 rounded-lg border p-3 outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="flex-1 rounded-lg border p-3 outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed text-slate-900 placeholder-slate-400"
         />
 
         <button
