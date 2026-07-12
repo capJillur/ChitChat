@@ -6,6 +6,7 @@ interface Props {
   setUserSearch: Dispatch<SetStateAction<string>>;
   onlineCount: number;
   totalUsers: number;
+  onLogout: () => void;
 }
 
 const Sidebar = ({
@@ -14,10 +15,11 @@ const Sidebar = ({
   setUserSearch,
   onlineCount,
   totalUsers,
+  onLogout,
 }: Props) => {
   return (
-    <div className="hidden md:flex h-full w-full max-w-[150px] flex-col rounded-2xl border border-slate-700 bg-slate-900 p-4 text-slate-100 shadow-sm">
-      <div className="mb-4 border-b border-slate-700 pb-4">
+    <div className="hidden md:flex h-full w-full max-w-[150px] flex-col overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 p-4 text-slate-100 shadow-sm">
+      <div className="mb-4 shrink-0 border-b border-slate-700 pb-4">
         <h2 className="text-xs font-semibold tracking-[0.24em] text-slate-400">ChitChat</h2>
         <p className="mt-2 text-xl font-thin">Users</p>
         <span className="mt-2 inline-flex rounded-full bg-slate-800 px-3 py-1 text-[11px] font-semibold text-slate-300">
@@ -25,7 +27,7 @@ const Sidebar = ({
         </span>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 shrink-0">
         <label className="block text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">
           Search
         </label>
@@ -37,7 +39,7 @@ const Sidebar = ({
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto pr-1">
+      <div className="min-h-0 flex-1 overflow-y-auto pr-1">
         {userList.length === 0 ? (
           <div className="rounded-3xl border border-slate-700 bg-slate-950 p-4 text-sm text-slate-400">
             No users found.
@@ -54,6 +56,16 @@ const Sidebar = ({
             ))}
           </div>
         )}
+      </div>
+
+      <div className="mt-4 shrink-0 border-t border-slate-700 pt-3">
+        <button
+          type="button"
+          onClick={onLogout}
+          className="w-full rounded-2xl bg-rose-600/90 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-500"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

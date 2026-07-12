@@ -38,7 +38,17 @@ const RegisterPage = ({ onRegister, switchToLogin }: Props) => {
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
-        <h1 className="text-3xl font-bold text-slate-900">Create Account</h1>
+        <h1 
+  className="text-4xl mb-8" 
+  style={{ 
+    fontFamily: "Georgia, serif", 
+    fontStyle: "italic", 
+    fontWeight: "bold",
+    color: "#262626" 
+  }}
+>
+  ChitChat
+</h1>
         <p className="mt-2 text-slate-500">Register to join the chat room.</p>
 
         <div className="mt-6 space-y-4">

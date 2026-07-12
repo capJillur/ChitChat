@@ -99,7 +99,7 @@ const ChatPage = ({ currentUser, onLogout }: Props) => {
         const result = await getUserCount();
         setTotalUsers(result.data.count ?? 0);
       } catch {
-        // ignore
+        
       }
     };
 
@@ -110,7 +110,7 @@ const ChatPage = ({ currentUser, onLogout }: Props) => {
           result.data.users?.map((user: { username: string }) => user.username) ?? [];
         setUserList(names);
       } catch {
-        // ignore
+       
       }
     };
 
@@ -174,6 +174,7 @@ const ChatPage = ({ currentUser, onLogout }: Props) => {
             setUserSearch={setUserSearch}
             onlineCount={onlineCount}
             totalUsers={totalUsers}
+            onLogout={onLogout}
           />
 
           <main className="flex h-full flex-1 flex-col overflow-hidden px-4 py-4 sm:px-6">
