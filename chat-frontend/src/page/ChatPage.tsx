@@ -26,6 +26,7 @@ const ChatPage = ({ currentUser, onLogout }: Props) => {
   const [userList, setUserList] = useState<string[]>([]);
   const [userSearch, setUserSearch] = useState("");
   const [error, setError] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     socket.connect();
@@ -167,7 +168,7 @@ const ChatPage = ({ currentUser, onLogout }: Props) => {
       <div className="flex h-full flex-col">
         
 
-        <div className="flex h-full flex-1 flex-col overflow-hidden lg:flex-row">
+        <div className="flex h-full flex-1 flex-col overflow-hidden md:flex-row">
           <Sidebar
             userList={filteredUsers}
             userSearch={userSearch}
@@ -175,18 +176,36 @@ const ChatPage = ({ currentUser, onLogout }: Props) => {
             onlineCount={onlineCount}
             totalUsers={totalUsers}
             onLogout={onLogout}
+            isOpen={isSidebarOpen}
+            onClose={() => setIsSidebarOpen(false)}
           />
 
           <main className="flex h-full flex-1 flex-col overflow-hidden px-4 py-4 sm:px-6">
     
 
             <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-slate-900 shadow-sm">
-              <div className="flex flex-col gap-3 border-b border-slate-700 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <h3 className="text-base text-left font-semibold text-slate-100">Messenger</h3>
-                  <p className="text-sm text-left text-slate-400">Everyone in the room</p>
+              <div className="flex flex-col gap-3 border-b border-slate-700 px-5 py-4">
+                <div className="flex w-full items-center justify-between">
+                  <div>
+                    <h3 className="text-base text-left font-semibold text-slate-100">Messenger</h3>
+                    <p className="text-sm text-left text-slate-400">Everyone in the room</p>
+                  </div>
+
+                  <div className="md:hidden">
+                    <button
+                      type="button"
+                      aria-label="Open sidebar"
+                      onClick={() => setIsSidebarOpen(true)}
+                      className="inline-flex items-center justify-center rounded-md bg-slate-800 p-2 text-slate-200 hover:bg-slate-700"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-                <div className="text-xs rounded-full bg-slate-950 px-3 py-1 font-semibold text-slate-300">
+
+                <div className="text-xs rounded-full bg-slate-950 px-3 py-1 font-semibold text-slate-300 self-center sm:self-auto">
                   Active: {onlineCount} / {totalUsers}
                 </div>
               </div>
