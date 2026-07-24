@@ -1,5 +1,9 @@
 # 💬 ChitChat - Real-Time Chat Application
 
+App Link
+
+https://chit-chat-khaki-ten.vercel.app
+
 A modern real-time chat application built with **React**, **Node.js**, **Express**, **Socket.IO**, and **MongoDB Atlas**.
 
 Users can exchange messages instantly without refreshing the page while all chat history is persisted in MongoDB and automatically loaded when the application starts.
@@ -197,31 +201,7 @@ http://localhost:5173
 POST /api/messages
 ```
 
-Body
 
-```json
-{
-    "username":"Jillur",
-    "message":"Hello World"
-}
-```
-
-Response
-
-```json
-{
-    "success": true,
-    "message": "Message sent successfully.",
-    "data": {
-        "_id": "...",
-        "username": "Jillur",
-        "message": "Hello World",
-        "createdAt": "..."
-    }
-}
-```
-
----
 
 ## Get Chat History
 
@@ -231,23 +211,6 @@ Response
 GET /api/messages
 ```
 
-Response
-
-```json
-{
-    "success": true,
-    "data": [
-        {
-            "_id":"...",
-            "username":"Jillur",
-            "message":"Hello",
-            "createdAt":"..."
-        }
-    ]
-}
-```
-
----
 
 # Socket.IO Events
 
@@ -370,20 +333,8 @@ VITE_SOCKET_URL=http://localhost:5000
 
 ---
 
-# Assumptions
-
-- Dummy authentication is used.
-- Every user chooses a username before chatting.
-- Messages are public and visible to all connected users.
-- No password or account management is implemented.
-- Internet connection is available.
-- MongoDB Atlas is accessible.
-
----
-
 # Future Improvements
 
-- JWT Authentication
 - Private messaging
 - User avatars
 - Emoji support
@@ -405,11 +356,12 @@ VITE_SOCKET_URL=http://localhost:5000
 
 ## Frontend
 
-Vercel / Netlify
+Vercel 
+
 
 ## Backend
 
-Render / Railway
+Render 
 
 ## Database
 
