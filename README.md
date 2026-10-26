@@ -169,14 +169,6 @@ Install dependencies
 npm install
 ```
 
-Create `.env`
-
-```env
-VITE_API_URL=http://localhost:5000/api
-
-VITE_SOCKET_URL=http://localhost:5000
-```
-
 Run frontend
 
 ```bash
@@ -309,29 +301,7 @@ The application gracefully handles:
 
 ---
 
-# Environment Variables
 
-## Backend
-
-```env
-PORT=5000
-
-MONGODB_URI=your_connection_string
-
-CLIENT_URL=http://localhost:5173
-```
-
----
-
-## Frontend
-
-```env
-VITE_API_URL=http://localhost:5000/api
-
-VITE_SOCKET_URL=http://localhost:5000
-```
-
----
 
 # Future Improvements
 
@@ -376,4 +346,4 @@ MongoDB Atlas
 
 # License
 
-md jillur rahman
+md.jillur.rahman
